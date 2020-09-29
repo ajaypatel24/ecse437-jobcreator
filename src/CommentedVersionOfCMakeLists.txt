@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.18.2)
+
+project(JobCreator)
+
+add_library(utils utils/*.c) //creates target utils built from files in utils directory input.c
+target_include_directories(utils PUBLIC include) //ensures the header files required for input.c are included, PUBLIC impacts current target and any other links
+
+add_library(jobs jobs/*.c) //creates target jobs built from files in the jobs directory job.c
+target_include_directories(jobs PUBLIC include) //ensures the header files required for job.c are included, PUBLIC impacts current target and any other links
+
+add_executable(jobcreator main.c) //creates executable jobcreator using main.c
+target_link_libraries(jobcreator utils jobs) //ensures the executables created are linked to jobcreator 
